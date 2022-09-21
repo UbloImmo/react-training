@@ -1,23 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
-export type ChipStatus = "success" | "error" | "warning";
+export type ChipVariant = "success" | "error" | "warning" | "info";
 
 interface Props {
-  status: ChipStatus;
+  variant: ChipVariant;
+  label: string;
   className?: string;
 }
 
 export const Chip = (props: Props) => {
-  switch (props.status) {
+  switch (props.variant) {
     case "success":
-      return <SuccessChip className={props.className}>Success</SuccessChip>;
+      return (
+        <SuccessChip className={props.className}>{props.label}</SuccessChip>
+      );
     case "error":
-      return <ErrorChip className={props.className}>Error</ErrorChip>;
+      return <ErrorChip className={props.className}>{props.label}</ErrorChip>;
     case "warning":
-      return <WarningChip className={props.className}>Warning</WarningChip>;
+      return (
+        <WarningChip className={props.className}>{props.label}</WarningChip>
+      );
+    case "info":
+      return <InfoChip className={props.className}>{props.label}</InfoChip>;
     default:
-      return <Never check={props.status} />;
+      return <Never check={props.variant} />;
   }
 };
 
@@ -42,4 +49,8 @@ const ErrorChip = styled(BaseChip)`
 
 const WarningChip = styled(BaseChip)`
   background-color: yellow;
+`;
+
+const InfoChip = styled(BaseChip)`
+  background-color: lightgray;
 `;

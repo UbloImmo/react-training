@@ -1,28 +1,12 @@
 import styled from "styled-components";
 import { Card } from "./components/Card";
+import { PokeData } from "./components/PokeData";
 import "./index.css";
 
 function App() {
   return (
     <Container>
-      <Card
-        imageSrc="https://via.placeholder.com/200"
-        title="Titre"
-        description="Reprehenderit adipisicing eiusmod adipisicing laboris Lorem nostrud occaecat non adipisicing aliquip quis voluptate. Est nostrud incididunt Lorem aliqua est ex."
-        status="warning"
-      />
-      <Card
-        imageSrc="https://via.placeholder.com/200"
-        title="Titre"
-        description="Reprehenderit adipisicing eiusmod adipisicing laboris Lorem nostrud occaecat non adipisicing aliquip quis voluptate. Est nostrud incididunt Lorem aliqua est ex."
-        status="error"
-      />
-      <Card
-        imageSrc="https://via.placeholder.com/200"
-        title="Titre"
-        description="Reprehenderit adipisicing eiusmod adipisicing laboris Lorem nostrud occaecat non adipisicing aliquip quis voluptate. Est nostrud incididunt Lorem aliqua est ex."
-        status="success"
-      />
+      <PokeData pokemonId={123} />
     </Container>
   );
 }

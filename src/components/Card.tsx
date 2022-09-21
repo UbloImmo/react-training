@@ -1,34 +1,50 @@
 import React from "react";
 import styled from "styled-components";
-import { Chip, ChipStatus } from "./Chip";
+import { Chip, ChipVariant } from "./Chip";
 
 interface Props {
   imageSrc: string;
   title: string;
   description: string;
-  status: ChipStatus;
+  types: string[];
+  children?: React.ReactNode;
 }
 
 export const Card = (props: Props) => {
+  const { types = [] } = props;
+
   return (
     <Container>
-      <Image src={props.imageSrc} />
-      <Content>
-        <Title>{props.title}</Title>
-        <Description>{props.description}</Description>
-        <PositionedChip status={props.status} />
-      </Content>
+      <InfoContainer>
+        <Image src={props.imageSrc} />
+        <Content>
+          <Title>{props.title}</Title>
+          <Description>{props.description}</Description>
+          <TypesContainer>
+            {types.map((type) => (
+              <Chip variant="info" label={type} />
+            ))}
+          </TypesContainer>
+        </Content>
+      </InfoContainer>
+      {props.children}
     </Container>
   );
 };
 
 const Container = styled("div")`
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
-  align-items: center;
   background-color: white;
   border-radius: 0.5rem;
+`;
+
+const InfoContainer = styled("div")`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 `;
 
 const Image = styled("img")`
@@ -38,9 +54,17 @@ const Image = styled("img")`
 
 const Content = styled("div")`
   display: flex;
+  flex: 1;
   align-self: stretch;
   flex-direction: column;
   align-items: baseline;
+  gap: 0.5rem;
+`;
+
+const TypesContainer = styled("div")`
+  display: flex;
+  align-self: stretch;
+  justify-content: flex-end;
   gap: 0.5rem;
 `;
 
