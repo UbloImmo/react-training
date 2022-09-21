@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { Chip, ChipStatus } from "./Chip";
 
 interface Props {
   imageSrc: string;
   title: string;
   description: string;
-  status: "success" | "error" | "warning";
+  status: ChipStatus;
 }
 
 export const Card = (props: Props) => {
@@ -15,7 +16,7 @@ export const Card = (props: Props) => {
       <Content>
         <Title>{props.title}</Title>
         <Description>{props.description}</Description>
-        <PositionedChip>{props.status}</PositionedChip>
+        <PositionedChip status={props.status} />
       </Content>
     </Container>
   );
@@ -47,14 +48,6 @@ const Title = styled("h2")``;
 
 const Description = styled("p")`
   flex: 1;
-`;
-
-const Chip = styled("div")`
-  background-color: yellow;
-  border-radius: 1rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  text-align: center;
 `;
 
 const PositionedChip = styled(Chip)`
