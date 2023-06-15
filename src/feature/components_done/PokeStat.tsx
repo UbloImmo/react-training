@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
-import { usePokemonContext } from "./PokeData.provider";
+import { usePokemonContext } from "../provider/PokeData.provider";
 
 export const PokeStat = () => {
   const { pokemonData, isLoading, error } = usePokemonContext();

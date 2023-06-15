@@ -1,5 +1,8 @@
 import { Card } from "./Card";
-import { PokemonStoreProvider, usePokemonStore } from "./PokeData.provider";
+import {
+  PokemonStoreProvider,
+  usePokemonStore,
+} from "../provider/PokeData.provider";
 import { PokeStat } from "./PokeStat";
 
 interface Props {

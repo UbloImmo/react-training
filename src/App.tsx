@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Card } from "./components/Card";
-import { PokeData } from "./components/PokeData";
+import { PokeData } from "./feature/components_test/PokeData";
 import "./index.css";
 
 function App() {
