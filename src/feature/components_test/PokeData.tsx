@@ -1,17 +1,25 @@
+import { useCallback, useState } from "react";
 import { Card } from "./Card";
-import { usePokemonStore } from "../provider/PokeData.provider";
+import { usePokemon } from "./usePokemon";
 
 interface Props {
   pokemonId: number;
 }
 
 export const PokeData = ({ pokemonId }: Props) => {
-  const pokemonStore = usePokemonStore(pokemonId);
-  const { pokemonData, error, isLoading } = pokemonStore;
+  const [pokemonNumber, setPokemonNumber] = useState(pokemonId);
+  const { isLoading, isSuccess, data } = usePokemon(pokemonNumber);
+  const pickRandomPokemon = useCallback(() => {
+    setPokemonNumber(Math.floor(Math.random() * 151) + 1);
+  }, [setPokemonNumber]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <h1>Loading ...</h1>;
+  if (!isSuccess) return <h1>Something went wrong</h1>;
 
-  if (error || !pokemonData) return <h1>Error 😬</h1>;
-
-  return <Card pokemon={pokemonData} />;
+  return (
+    <div>
+      <button onClick={pickRandomPokemon}>Random</button>
+      <Card pokemon={data} />
+    </div>
+  );
 };
